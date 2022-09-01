@@ -3,15 +3,21 @@
     <header>
         <meta charset="utf-8"/>
         <title>Rock paper scissors</title>
-        <script src="./script.js"></script>
+        <script src="./script.js" defer></script>
         <link href="./style.css" rel="stylesheet"/>
     </header>
 
     <body>
         <div class="selection-container">
-            <button>Rock</button>
-            <button>Paper</button>
-            <button>Scissor</button>
+            <button data-key="rock" class="selection">Rock</button>
+            <button data-key="paper" class="selection">Paper</button>
+            <button data-key="scissor" class="selection">Scissor</button>
+        </div>
+        <div class="result-container">
+            <p class="choice-text"></p>
+            <p class="result-text"></p>
+            <p class="score-text"></p>
+            <p class="over-text"></p>
         </div>  
     </body>
 </html>

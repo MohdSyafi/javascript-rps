@@ -1,3 +1,8 @@
+let playerScore =0;
+let compScore =0;
+let roundCount =0;
+let buttons = document.querySelectorAll('.selection');
+
 function getComputerChoice(){
     const computerSelection =  Math.floor(Math.random() * 3);
     let computerSelectionString = "";
@@ -18,6 +23,7 @@ function getComputerChoice(){
 
     return computerSelectionString;
 }
+
 function decide(playerSelection, computerSelectionString){
     
     const playerSelectionString = playerSelection.toLowerCase();
@@ -85,46 +91,55 @@ function decide(playerSelection, computerSelectionString){
     return result;
 }
 
+function playgame(e){
+    roundCount ++;
+    const playerSelection = e.target.getAttribute("data-key")
+    const resultElement = document.querySelector(".result-text");
+    const compChoiceText = document.querySelector(".choice-text");
+    const scoreText = document.querySelector(".score-text");
+    const overText = document.querySelector(".over-text");
 
-function playround(){
-    const input = prompt("Rock, paper or scissor? : ");
     const computerChoice = getComputerChoice();
-    const result = decide(input,computerChoice);
-    console.log(`Computer chose ${computerChoice}`);
-    console.log(result);
-    return result;
-}
+    const result = decide(playerSelection,computerChoice);
 
-/* function game(){
-
-let playerPoint = 0;
-let computerPoint = 0;
-
-    for(let i = 0 ; i < 5 ; i++){
-
-        const result = playround();
-        
-        switch(result){
-            case "You win":
-                playerPoint++;
+    switch(result){
+        case "You win":
+            playerScore++;
             break;
-    
-            case "You lose":
-                computerPoint++;
-            break;                    
-        }
-
-        console.log(`You:${playerPoint}, Computer:${computerPoint}`);
+        case "You lose":
+            compScore++;
+            break;
     }
+ 
+    overText.textContent = ``;
+    compChoiceText.textContent = `Computer chose ${computerChoice}`;
+    resultElement.textContent = result;
+    scoreText.textContent = `Player: ${playerScore} Computer:${compScore}`;
+    
+    if(roundCount == 5){
+        if(playerScore>compScore){
+            overText.textContent = `Game over, you win `;
+            playerScore = 0;
+            compScore = 0;
+            roundCount = 0;
 
-    if(playerPoint>computerPoint){
-       console.log("You win the game");        
-    }else if(computerPoint>playerPoint){
-        console.log("You lose the game")
-    }else if(playerPoint==computerPoint){
-        console.log("Nobody win the game")
+        }    
+        else if (compScore>playerScore){
+            overText.textContent = `Game over, computer win `;
+            playerScore = 0;
+            compScore = 0;
+            roundCount = 0;
+        }      
+        else{
+            overText.textContent = `Game over, nobody win`;
+            playerScore = 0;
+            compScore = 0;
+            roundCount = 0;
+        }
+           
     }
 }
 
-game(); */
+buttons.forEach(btn => btn.addEventListener("click",playgame));
+
 
