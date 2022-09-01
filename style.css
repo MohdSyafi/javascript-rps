@@ -1,0 +1,14 @@
+.selection-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.selection-container button{
+    margin: 16px;
+    padding:0px 4px 0px 4px;
+    border:solid;
+    border-color: black;
+    background-color: white;
+    color:black; 
+}

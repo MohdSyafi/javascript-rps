@@ -95,7 +95,7 @@ function playround(){
     return result;
 }
 
-function game(){
+/* function game(){
 
 let playerPoint = 0;
 let computerPoint = 0;
@@ -126,5 +126,5 @@ let computerPoint = 0;
     }
 }
 
-game();
+game(); */
 
